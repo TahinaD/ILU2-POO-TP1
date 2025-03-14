@@ -87,6 +87,8 @@ public class Village {
 	}
 
 	public void setChef(Chef chef) {
+		if (chef == null)
+			throw new VillageSansChefException();
 		this.chef = chef;
 	}
 

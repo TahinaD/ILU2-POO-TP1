@@ -5,6 +5,7 @@ import personnages.Druide;
 import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
+import villagegaulois.VillageSansChefException;
 
 public class Scenario {
 
@@ -40,6 +41,20 @@ public class Scenario {
 		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
 		System.out.println(village.partirVendeur(bonemine));
 		System.out.println(village.afficherMarche());
+		
+		try {
+			etalFleur.acheterProduit(-1, assurancetourix);
+		} catch (IllegalArgumentException e) {
+			System.out.println("La quantité de produit n'est pas legit.");
+		} catch (IllegalStateException e) {
+			System.out.println("Il n'y a pas de vendeur à cet etal.");
+		}
+		
+		try {
+			village.setChef(null);
+		} catch (VillageSansChefException e) {
+			System.out.println("Le village n'a pas de chef.");
+		}
 	}
 
 }
